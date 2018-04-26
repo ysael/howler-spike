@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Howl, Howler} from 'howler';
+/*
+  use those 2 sources for the data visualisation
+  https://s3.amazonaws.com/mixgenius.testing/howler-test/visualization-original-1000.json
 
+  https://s3.amazonaws.com/mixgenius.testing/howler-test/visualization-rawmaster-1000.json
+*/
 @Injectable()
 export class PlayerService {
   currentSource = 0;
@@ -49,6 +54,10 @@ export class PlayerService {
     this.mastered.mute(false);
     this.original.mute(true);
     // this.playAll();
+  }
+
+  seekTo(sec){
+    this.howls.map(howl => howl.seek(sec));
   }
 
 

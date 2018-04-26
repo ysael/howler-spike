@@ -27,7 +27,7 @@ export class PlayerComponent implements OnInit {
   }
 
   seek(e) {
-    console.log(e);
+    this.playerService.seekTo(Math.random() * 31);
   }
 
   playall(){
