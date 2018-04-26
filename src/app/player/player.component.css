@@ -1,0 +1,12 @@
+.waveform{
+    width:100%;
+    height: 70px;
+    background: pink;
+}
+menu{
+  background: blue;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+}

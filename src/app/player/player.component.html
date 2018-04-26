@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="waveform" (click)="seek($event)">
+    INTRODUCTION.wav
+  </div>
+  <menu type="context">
+    <button  (click)="play(0)">Play</button>
+    <button (click)="pause(0)">Pause</button>
+  </menu>
+</div>
+
+<div class="container">
+  <div class="waveform" (click)="seek($event)">
+    LANDR-INTRODUCTION
+  </div>
+  <menu type="context">
+    <button  (click)="play(1)">Play</button>
+    <button (click)="pause(1)">Pause</button>
+  </menu>
+</div>
+
+<button  (click)="playall()">PlayAll</button>
+<button  (click)="pauseAll()">PauseAll</button>
+<button  (click)="playOriginal()">playOriginal</button>
+<button  (click)="playMastered()">playMastered</button>
