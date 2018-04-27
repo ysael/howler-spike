@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Howl } from 'howler';
 import { PlayerService } from './../player.service';
 import { Component, OnInit, NgModule } from '@angular/core';
@@ -11,18 +12,18 @@ import { Component, OnInit, NgModule } from '@angular/core';
 
 
 export class PlayerComponent implements OnInit {
-  track1: Howl;
-  track2: Howl;
+  original: any = {pos: 0, duration: 0};
+  mastered: any = {pos: 0, duration: 0};
+
+
 
   constructor(private playerService: PlayerService) { }
 
   play(id) {
-    console.log('play', id);
     this.playerService.playTrackById(id);
   }
 
   pause(id) {
-    console.log('pause', id);
     this.playerService.pauseTrackById(id);
   }
 
@@ -46,7 +47,17 @@ export class PlayerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.playerService.getInfos(0).subscribe( (h: any) => {
+      this.original.pos = h.position;
+      this.original.duration = h.duration;
+      this.original.state = h.state;
+    });
 
+    this.playerService.getInfos(1).subscribe( (h: any) => {
+      this.mastered.pos = h.position;
+      this.mastered.duration = h.duration;
+      this.mastered.state = h.state;
+    });
   }
 
 }

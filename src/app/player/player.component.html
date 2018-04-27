@@ -1,6 +1,10 @@
 <div class="container">
   <div class="waveform" (click)="seek($event)">
-    INTRODUCTION.wav
+    <div class="position"></div>
+    <h2>original drums</h2>
+    <h3> Current position:  {{original.pos}}</h3>
+    <h3> Duration:  {{original.duration}}</h3>
+    <h3> State:  {{original.state}}</h3>
   </div>
   <menu type="context">
     <button  (click)="play(0)">Play</button>
@@ -10,7 +14,11 @@
 
 <div class="container">
   <div class="waveform" (click)="seek($event)">
-    LANDR-INTRODUCTION
+    <div class="position"></div>
+    <h2>mastered drums</h2>
+    <h3> Current position:  {{mastered.pos}}</h3>
+    <h3> Duration:  {{mastered.duration}}</h3>
+    <h3> State:  {{mastered.state}}</h3>
   </div>
   <menu type="context">
     <button  (click)="play(1)">Play</button>
@@ -21,4 +29,5 @@
 <button  (click)="playall()">PlayAll</button>
 <button  (click)="pauseAll()">PauseAll</button>
 <button  (click)="playOriginal()">playOriginal</button>
+<button  (click)="playMastered()">playMastered</button>
 <button  (click)="playMastered()">playMastered</button>

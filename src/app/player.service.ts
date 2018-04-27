@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Howl, Howler} from 'howler';
+import { Observable } from 'rxjs/Observable';
 /*
   use those 2 sources for the data visualisation
   https://s3.amazonaws.com/mixgenius.testing/howler-test/visualization-original-1000.json
@@ -14,6 +15,8 @@ export class PlayerService {
   mastered = this.addTrack(['https://s3.amazonaws.com/mixgenius.testing/howler-test/LANDR-30s_quickWorking.wav']);
   original = this.addTrack(['https://s3.amazonaws.com/mixgenius.testing/howler-test/30s_quickWorking.wav']);
 
+
+
   addTrack(sources: string[]): Howl {
     const track = new Howl({
       src: sources,
@@ -21,8 +24,28 @@ export class PlayerService {
       autoplay: false,
     });
     this.howls.push(track);
-    console.log(track);
     return track;
+  }
+
+  getInfos(id) {
+    return new Observable( o => {
+      setInterval(() => {
+        this.howls.map(h => console.log(h.seek()));
+        const h: Howl = this.howls[id];
+        o.next(
+            {
+              'position': h.seek(),
+              'duration': h.duration(),
+              'state': h.state(),
+              'muted': h.mute(),
+            }
+          );
+      }, 300);
+    });
+  }
+
+  getDuration(id){
+    this.howls[id].duration();
   }
 
   playTrackById(id){
@@ -34,34 +57,30 @@ export class PlayerService {
   }
 
   playAll() {
-    this.original.play();
-    this.mastered.play();
+    this.howls.map( h => h.playing() ? null : h.play());
   }
 
   pauseAll() {
-    this.original.pause();
-    this.mastered.pause();
+    this.howls.map( h => h.pause() );
   }
 
+
   playOriginal() {
-   // this.playAll();
+    this.playAll();
     this.original.mute(false);
     this.mastered.mute(true);
   }
 
 
   playMastered() {
+    this.playAll();
     this.mastered.mute(false);
     this.original.mute(true);
-    // this.playAll();
   }
 
   seekTo(sec){
     this.howls.map(howl => howl.seek(sec));
   }
-
-
-
 
   constructor() { }
 

@@ -1,7 +1,15 @@
 .waveform{
     width:100%;
-    height: 70px;
+    height: 200px;
     background: pink;
+}
+
+.position{
+  width: 5px;
+  height: 00px;
+  left: 100px;
+  position: absolute;
+  background-color: black;
 }
 menu{
   background: blue;
