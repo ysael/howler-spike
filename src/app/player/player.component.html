@@ -1,6 +1,6 @@
 <div class="container">
   <div class="waveform" (click)="seek($event)">
-    <div class="position"></div>
+    <div class="position" [class.left]="original.pos"></div>
     <h2>original drums</h2>
     <h3> Current position:  {{original.pos}}</h3>
     <h3> Duration:  {{original.duration}}</h3>
